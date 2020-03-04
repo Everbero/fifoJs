@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Simulador FIFO</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript" src="fifo.js"></script>
+	<link rel="stylesheet" type="text/css" href="lol.css">
+</head>
+<body>
+	<div class="intro">
+		<h1>O que é FIFO?</h1>
+		<p>Em Ciência da Computação, algoritmo de fila simples, FIFO ou FCFS é um algoritmo de escalonamento para estruturas de dados do tipo fila. <a href="https://pt.wikipedia.org/wiki/FIFO" target="_blank">Wikipédia</a></p>
+		<p>Em nossa fila virtual, demonstramos o uso do algoritmo FIFO, adicionando processos à uma fila.</p>
+		<h3>Regras da nossa fila</h3>
+		<ol>
+			<li>Novos processos são sempre adicionados ao final da fila.</li>
+			<li>Quando cheia o primeiro processo é removido para adicionarmos um processo ao final da fila.</li>
+			<li>Remover um processo de qualquer posicão reordena a fila liberando sempre a ultima posição para um novo processo.</li>
+		</ol>
+	</div>
+	<div class="quadro">
+		<div class="numeros">
+			<h2>Lista de processos</h2>
+			<p>Os números abaixo representam ids de processos que podem ser adicionados à nossa fila de processamento. Clique em um número para adiciona-lo à fila de processos.</p>
+			<ul id="list">
+				<li><button class="btnNumber"></button></li>
+				<li><button class="btnNumber"></button></li>
+				<li><button class="btnNumber"></button></li>
+				<li><button class="btnNumber"></button></li>
+				<li><button class="btnNumber"></button></li>
+				<li><button class="btnNumber"></button></li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="memoria">
+		<div class="fila">
+			<h2>Fila de Processamento</h2>
+			<p>A lista abaixo representa a fila de processamento, novos processos são adicionados ao final da fila. Clique em um número na fila para removê-lo da fila.</p>
+		<ul id="list">
+			<li><button id="pos0" class="filaNumber">XX</button></li>
+			<li><button id="pos1" class="filaNumber">XX</button></li>
+			<li><button id="pos2" class="filaNumber">XX</button></li>
+			<li><button id="pos3" class="filaNumber">XX</button></li>
+			<li><button id="pos4" class="filaNumber">XX</button></li>
+			<li><button id="pos5" class="filaNumber">XX</button></li>
+		</ul>
+	</div>	
+	</div>
+	
+	
+	<div class="options">
+		<button id="sort">Sorteia Números</button>
+		<button id="reset">Reseta Página</button>
+	</div>
+</body>
+</html>
