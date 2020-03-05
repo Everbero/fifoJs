@@ -15,9 +15,27 @@ function pushN(number){
 	  	filaArray.push(number);	
 	  } 
 	  else {
-	  	// tira o primeiro item e adiciona um item no final
-	  	filaArray.shift();
-	  	filaArray.push(number);	
+		  // tira o primeiro item e adiciona um item no final
+		//   alert('Não há mais memória disponível para novos processos');
+	  	// filaArray.shift();
+		  // filaArray.push(number);	
+		  $.confirm({
+			useBootstrap: false,
+			title: 'Não foi possível executar esta ação',
+			content: 'Não há mais memória disponível para novos processos, aguarde a execução do processo atual ou retire um dos processos da fila.',
+			type: 'red',
+			typeAnimated: true,
+			buttons: {
+				// tryAgain: {
+				// 	text: 'Try again',
+				// 	btnClass: 'btn-red',
+				// 	action: function(){
+				// 	}
+				// },
+				fechar: function () {
+				}
+			}
+		});
 
 	  }
 	  showN();
@@ -49,6 +67,7 @@ function removeN(posN){
 }
 
 // Barra de progresso
+// criar um método para parar o carregamento quando remover o processo em execução
 var i = 0;
 function progresso(tempo) {
   if (i == 0) {
