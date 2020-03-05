@@ -13,16 +13,16 @@ function pushN(number){
 	  if (filaArray.length <= 5) {
 	  	// coloca um item no final do array
 	  	filaArray.push(number);	
-
-	  } else{
+	  } 
+	  else {
 	  	// tira o primeiro item e adiciona um item no final
 	  	filaArray.shift();
 	  	filaArray.push(number);	
 
 	  }
 	  showN();
-
 }
+
 // coloca n numeros em fila no DOM
 function showN(){
 	if (filaArray) {
@@ -34,8 +34,6 @@ function showN(){
 			else {
 				$( this ).text("XX");
 			}
-
-
 		});
 	}
 }
@@ -46,10 +44,34 @@ function removeN(posN){
 	pos = pos.split("pos", 2)
 	// console.log("this is pos: " + pos);
 	filaArray.splice(pos[1], 1);
-	
 	// atualiza exibição
 	showN();
+}
 
+// Barra de progresso
+var i = 0;
+function progresso(tempo) {
+  if (i == 0) {
+    i = 1;
+    var elem = document.querySelector(".processamento");
+    var width = 1;
+    var id = setInterval(frame, tempo);
+    function frame() {
+      if (width >= 100) {
+		clearInterval(id);
+		removeN('pos0');
+		i = 0;
+		// se o array tiver mais de uma posicao reinicia a funcao
+		// com o primeiro elemento
+		if(filaArray.length >= 1){
+			progresso(filaArray[0]);
+		}
+      } else {
+        width++;
+        elem.style.width = width + "%";
+      }
+	}
+  }
 }
 
 // AQUI EXECUTA NA HORA
@@ -62,14 +84,15 @@ $(function() {
     
     $( ".btnNumber" ).click(function() {
 	  pushN($(this).text());
-	  console.log(filaArray);
+	  progresso($(this).text());
+	  // console.log(filaArray);
 	});
 
 	$( ".filaNumber" ).click(function() {
 
 	  removeN($(this).attr('id'));
 	  // console.log($(this));
-	  console.log(filaArray);
+	  // console.log(filaArray);
 	});
 
 	$( "#reset" ).click(function() {

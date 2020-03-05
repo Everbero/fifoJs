@@ -59,3 +59,8 @@ ul li{
   margin: 20px 0 20px 0;
   height: 10vh;
 }
+.processamento{
+  background-color: darkred;
+  width: 1%;
+  height: 4px;
+}
