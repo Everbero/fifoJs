@@ -1,4 +1,5 @@
 let filaArray = [];
+let currentId;
 
 // Sorteia N numeros e coloca valores nos botoes de processos
 function sortN(){
@@ -15,7 +16,7 @@ function pushN(number, html){
 	  } 
 	  else {
 		  // Caso o array esteja cheio, não adiciona mais itens e da um alerta
-		  $.confirm({
+		$.confirm({
 			useBootstrap: false,
 			title: 'Não foi possível executar esta ação',
 			content: 'Não há mais memória disponível para novos processos, aguarde a execução do processo atual ou retire um dos processos da fila.',
@@ -54,7 +55,22 @@ function removeN(posN){
 	var pos = posN;
 	pos = pos.split("pos", 2)
 	// console.log("this is pos: " + pos);
-	filaArray.splice(pos[1], 1);
+	if(pos[1] != 0){
+		filaArray.splice(pos[1], 1);
+	} else{
+		$.confirm({
+			useBootstrap: false,
+			title: 'Não foi possível executar esta ação',
+			content: 'Não é possível remover um processo em execução.',
+			type: 'red',
+			typeAnimated: true,
+			buttons: {
+				fechar: function () {
+				}
+			}
+		});
+	}
+	
 	// atualiza exibição
 	showN();
 }
@@ -62,16 +78,17 @@ function removeN(posN){
 // Barra de progresso
 // criar um método para parar o carregamento quando remover o processo em execução
 var i = 0;
+
 function progresso() {
   if (i == 0) {
     i = 1;
     var elem = document.querySelector(".processamento");
     var width = 1;
-    var id = setInterval(frame, filaArray[0].number);
+    currentId = setInterval(frame, filaArray[0].number);
     function frame() {
     // ao final do processamento remove o item processado	
       if (width >= 100) {
-		clearInterval(id);
+		clearInterval(currentId);
 		removeN('pos0');
 		i = 0;
 	// se o array tiver mais de uma posicao reinicia a funcao

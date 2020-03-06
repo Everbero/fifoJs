@@ -44,6 +44,7 @@ ul li{
     width: 33%;
     text-align: center;
     height: 47vh;
+    margin: 0;
 }
 .quadro{
     background-color: #03A9F4;
@@ -69,5 +70,13 @@ ul li{
 .processamento{
   background-color: darkred;
   width: 1%;
-  height: 4px;
+  height: 5px;
+}
+.processador{
+      border: 3px solid #ada4a4;
+      background-color: white;
+     
+}
+.processador button{
+   color: red;
 }
