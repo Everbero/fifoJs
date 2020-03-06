@@ -1,24 +1,20 @@
 let filaArray = [];
 
-// Sorteia N numeros
+// Sorteia N numeros e coloca valores nos botoes de processos
 function sortN(){
 	$( ".btnNumber" ).each(function( index ) {
-	  // console.log( index + ": " + $( this ).text() );
-	  $( this ).text(Math.floor(Math.random() * (999 - 0)) + 0);
+	  $( this ).attr("value", Math.floor(Math.random() * (999 - 0)) + 0);
 	});
 }
-// coloca n numeros no array até 6 numeros
-function pushN(number){
+// coloca o valor do botao e o html do ícone no array
+function pushN(number, html){
 	  // se o tamanho do array for até 6 (0-5)
 	  if (filaArray.length <= 5) {
 	  	// coloca um item no final do array
-	  	filaArray.push(number);	
+	  	filaArray.push({number: number, html: html});
 	  } 
 	  else {
-		  // tira o primeiro item e adiciona um item no final
-		//   alert('Não há mais memória disponível para novos processos');
-	  	// filaArray.shift();
-		  // filaArray.push(number);	
+		  // Caso o array esteja cheio, não adiciona mais itens e da um alerta
 		  $.confirm({
 			useBootstrap: false,
 			title: 'Não foi possível executar esta ação',
@@ -26,28 +22,25 @@ function pushN(number){
 			type: 'red',
 			typeAnimated: true,
 			buttons: {
-				// tryAgain: {
-				// 	text: 'Try again',
-				// 	btnClass: 'btn-red',
-				// 	action: function(){
-				// 	}
-				// },
 				fechar: function () {
 				}
 			}
 		});
-
 	  }
+	  // Atualiza o dom
 	  showN();
 }
 
 // coloca n numeros em fila no DOM
 function showN(){
+	// verifica se o array existe
 	if (filaArray) {
+		// itera por i indices com each
 		$( ".filaNumber" ).each(function( i ) {
-
 			if (filaArray[i]) {
-				$( this ).text(filaArray[i]);
+				$( this ).html(filaArray[i].html+'<span>'+filaArray[i].number+'</span>');
+				$( ".core" ).html(filaArray[0].html);
+				progresso();
 			} 
 			else {
 				$( this ).text("XX");
@@ -55,7 +48,7 @@ function showN(){
 		});
 	}
 }
-
+// tira um numero da fila de processamento
 function removeN(posN){
 	// splice(pos, 1)
 	var pos = posN;
@@ -69,21 +62,23 @@ function removeN(posN){
 // Barra de progresso
 // criar um método para parar o carregamento quando remover o processo em execução
 var i = 0;
-function progresso(tempo) {
+function progresso() {
   if (i == 0) {
     i = 1;
     var elem = document.querySelector(".processamento");
     var width = 1;
-    var id = setInterval(frame, tempo);
+    var id = setInterval(frame, filaArray[0].number);
     function frame() {
+    // ao final do processamento remove o item processado	
       if (width >= 100) {
 		clearInterval(id);
 		removeN('pos0');
 		i = 0;
-		// se o array tiver mais de uma posicao reinicia a funcao
-		// com o primeiro elemento
+	// se o array tiver mais de uma posicao reinicia a funcao
+	// com o primeiro elemento
 		if(filaArray.length >= 1){
-			progresso(filaArray[0]);
+			i = 0;
+			progresso();
 		}
       } else {
         width++;
@@ -97,13 +92,9 @@ function progresso(tempo) {
 // funcoes do ready
 $(function() {
 	sortN();
-	$( "#sort" ).click(function() {
-	  sortN();
-	});
     
     $( ".btnNumber" ).click(function() {
-	  pushN($(this).text());
-	  progresso($(this).text());
+	  pushN($(this).attr('value'), $(this).html());
 	  // console.log(filaArray);
 	});
 
@@ -112,10 +103,6 @@ $(function() {
 	  removeN($(this).attr('id'));
 	  // console.log($(this));
 	  // console.log(filaArray);
-	});
-
-	$( "#reset" ).click(function() {
-	  location.reload()
 	});
 
 });

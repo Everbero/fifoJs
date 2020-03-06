@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
 	<meta charset="UTF-8">
 	<title>Simulador FIFO</title>
@@ -9,6 +9,8 @@
 	<!-- Alertas -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+	<!-- Font Awesome -->
+	<script src="https://kit.fontawesome.com/8070ba09ca.js" crossorigin="anonymous"></script>
 	<!-- Meu código -->
 	<script type="text/javascript" src="fifo.js"></script>
 	<link rel="stylesheet" type="text/css" href="lol.css">
@@ -28,39 +30,39 @@
 	</div>
 	<div class="quadro">
 		<div class="numeros">
-			<h2>Lista de processos</h2>
-			<p>Os números abaixo representam ids de processos que podem ser adicionados à nossa fila de processamento. Clique em um número para adiciona-lo à fila de processos.</p>
+			<h2>Programas</h2>
 			<ul id="list">
-				<li><button class="btnNumber"></button></li>
-				<li><button class="btnNumber"></button></li>
-				<li><button class="btnNumber"></button></li>
-				<li><button class="btnNumber"></button></li>
-				<li><button class="btnNumber"></button></li>
-				<li><button class="btnNumber"></button></li>
+				<li><button class="btnNumber"><i class="fab fa-android"></i></button></li>
+				<li><button class="btnNumber"><i class="fab fa-bluetooth"></i></button></li>
+				<li><button class="btnNumber"><i class="fab fa-chrome"></i></button></li>
+				<li><button class="btnNumber"><i class="fab fa-dropbox"></i></button></li>
+				<li><button class="btnNumber"><i class="fab fa-facebook"></i></button></li>
+				<li><button class="btnNumber"><i class="fab fa-linux"></i></button></li>
+				<li><button class="btnNumber"><i class="fab fa-amazon"></i></button></li>
+				<li><button class="btnNumber"><i class="fab fa-angular"></i></button></li>
+				<li><button class="btnNumber"><i class="fab fa-adobe"></i></button></li>
 			</ul>
 		</div>
 	</div>
+	
+	<div class="processador">
+		<div class="processamento"></div>
+		<h2>Processador</h2>
+		<button id="core0" class="core">XX</button>
+	</div>
 
 	<div class="memoria">
-		<div class="processamento"></div>
 		<div class="fila">
-			<h2>Fila de Processamento</h2>
-			<p>A lista abaixo representa a fila de processamento, novos processos são adicionados ao final da fila. Clique em um número na fila para removê-lo da fila.</p>
+			<h2>Gerenciador de Processos</h2>
 		<ul id="list">
-			<li><button id="pos0" class="filaNumber">XX</button></li>
-			<li><button id="pos1" class="filaNumber">XX</button></li>
-			<li><button id="pos2" class="filaNumber">XX</button></li>
-			<li><button id="pos3" class="filaNumber">XX</button></li>
-			<li><button id="pos4" class="filaNumber">XX</button></li>
-			<li><button id="pos5" class="filaNumber">XX</button></li>
+			<li>Mem00<button id="pos0" class="filaNumber">XX</button></li>
+			<li>Mem01<button id="pos1" class="filaNumber">XX</button></li>
+			<li>Mem02<button id="pos2" class="filaNumber">XX</button></li>
+			<li>Mem03<button id="pos3" class="filaNumber">XX</button></li>
+			<li>Mem04<button id="pos4" class="filaNumber">XX</button></li>
+			<li>Mem05<button id="pos5" class="filaNumber">XX</button></li>
 		</ul>
 	</div>	
-	</div>
-	
-	
-	<div class="options">
-		<button id="sort">Sorteia Números</button>
-		<button id="reset">Reseta Página</button>
 	</div>
 </body>
 </html>
