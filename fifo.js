@@ -4,7 +4,7 @@ let currentId;
 // Sorteia N numeros e coloca valores nos botoes de processos
 function sortN(){
 	$( ".btnNumber" ).each(function( index ) {
-	  $( this ).attr("value", Math.floor(Math.random() * (999 - 0)) + 0);
+	  $( this ).attr("value", Math.floor(Math.random() * (100 - 0)) + 0);
 	});
 }
 // coloca o valor do botao e o html do ícone no array
@@ -40,12 +40,13 @@ function showN(){
 		$( ".filaNumber" ).each(function( i ) {
 			if (filaArray[i]) {
 				$( this ).html(filaArray[i].html+'<span>'+filaArray[i].number+'</span>');
-				$( ".core" ).html(filaArray[0].html);
+				$( ".core" ).html(filaArray[0].html+'<span>'+filaArray[0].number+'</span>');
 				progresso();
 			} 
 			else {
-				$( this ).text("XX");
+				$( this ).html('<i class="fas fa-memory"></i>');
 			}
+			
 		});
 	}
 }
@@ -55,21 +56,8 @@ function removeN(posN){
 	var pos = posN;
 	pos = pos.split("pos", 2)
 	// console.log("this is pos: " + pos);
-	if(pos[1] != 0){
-		filaArray.splice(pos[1], 1);
-	} else{
-		$.confirm({
-			useBootstrap: false,
-			title: 'Não foi possível executar esta ação',
-			content: 'Não é possível remover um processo em execução.',
-			type: 'red',
-			typeAnimated: true,
-			buttons: {
-				fechar: function () {
-				}
-			}
-		});
-	}
+	filaArray.splice(pos[1], 1);
+	
 	
 	// atualiza exibição
 	showN();
@@ -116,8 +104,22 @@ $(function() {
 	});
 
 	$( ".filaNumber" ).click(function() {
-
-	  removeN($(this).attr('id'));
+	 
+	  if ( ($(this).attr('id') == 'pos0') && ( !$("#pos0 i").hasClass('fa-memory') ) ) {
+		    $.confirm({
+				useBootstrap: false,
+				title: 'Não foi possível executar esta ação',
+				content: 'Não é possível remover um processo em execução.',
+				type: 'red',
+				typeAnimated: true,
+				buttons: {
+					fechar: function () {
+					}
+				}
+			});
+		}else{
+		  removeN($(this).attr('id'));
+		}
 	  // console.log($(this));
 	  // console.log(filaArray);
 	});

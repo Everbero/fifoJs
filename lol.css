@@ -5,7 +5,7 @@ p{
 body{
   margin: 0;
   min-heigth: 100vh;
-   background-color: #607D8B;
+  background-color: #607D8B;
 }
 button{
   border: none;
@@ -27,56 +27,59 @@ button span{
 }
 ul {
  columns: 3;
+ padding: 1%;
 }
 ul li{
     display: inline;
-   
 }
 
 /* CUSTOM */
 .intro{
   padding: 10px;
   background-color: #607D8B;
-  height: 50vh;
+  height: 47vh;
 }
 .quadro, .processador,  .memoria{
     float: left;
-    width: 33%;
+    width: 33.3%;
     text-align: center;
-    height: 47vh;
+    height: 50vh;
     margin: 0;
 }
 .quadro{
-    background-color: #03A9F4;
+    background-color: rgba(0,0,0,0.2);
 }
 
 .memoria{
     background-color: #009688;
 }
+.memoria li{
+  color: #091904;
+}
 /* botoes */
 
 .quadro button{
-  background-color: #00BCD4; /* Green */
-  color: #795548;
+  background-color: #f4d03f;
+  color: #000000;
+  border: 1px solid #f1c40f;
+  border-radius: 50%;
+  height: 70px;
 }
 .memoria button{
-  background-color: #4CAF50; /* Green */
+  background-color: #4CAF50; 
   color: white;
+  border: 3px dotted green;
 }
-.options {
-  text-align: center;
-  background-color: gray;
-}
+
 .processamento{
   background-color: darkred;
-  width: 1%;
   height: 5px;
+  width: 0;
 }
 .processador{
-      border: 3px solid #ada4a4;
-      background-color: white;
-     
+      background-color: white;    
 }
 .processador button{
    color: red;
+   border: 3px dotted grey;
 }
